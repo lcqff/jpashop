@@ -4,7 +4,6 @@ import java.util.List;
 import jpabook.jpashop.domain.Item;
 import jpabook.jpashop.domain.items.Book;
 import jpabook.jpashop.service.ItemService;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

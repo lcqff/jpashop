@@ -1,8 +1,6 @@
 package jpabook.jpashop.controller;
 
-import jakarta.persistence.Embedded;
 import jakarta.validation.constraints.NotEmpty;
-import jpabook.jpashop.domain.Address;
 import lombok.Getter;
 import lombok.Setter;
 

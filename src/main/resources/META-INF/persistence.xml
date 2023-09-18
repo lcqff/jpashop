@@ -7,6 +7,8 @@
     <class>jpabook.jpashop.domain.Member</class>
     <class>jpabook.jpashop.domain.Order</class>
     <class>jpabook.jpashop.domain.OrderItem</class>
+    <class>jpabook.jpashop.domain.Delivery</class>
+    <class>jpabook.jpashop.domain.Category</class>
     <properties>
       <!-- 필수 속성 -->
       <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>

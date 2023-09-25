@@ -2,6 +2,7 @@ package jpabook.jpashop.domain;
 
 import java.util.List;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -17,9 +18,10 @@ public class Delivery extends BaseEntity {
   private Long id;
   @OneToOne(mappedBy = "delivery", fetch = FetchType.LAZY)
   private Order order;
-  private String City;
-  private String street;
-  private String zipcode;
+
+  @Embedded
+  private Address address;
+
   @Enumerated(EnumType.STRING)
   private DeliveryStatus status;
 }

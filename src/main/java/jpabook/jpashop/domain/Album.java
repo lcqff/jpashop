@@ -1,9 +1,5 @@
 package jpabook.jpashop.domain;
 
-import javax.persistence.Embeddable;
-import javax.persistence.Entity;
-
-@Entity
 public class Album extends Item{
 private String artist;
 private String ect;

@@ -1,38 +1,56 @@
 package jpabook.jpashop.domain;
 
+import static javax.persistence.FetchType.LAZY;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Member extends BaseEntity{
-
+public class Member{
   @Id @GeneratedValue
   @Column(name = "MEMBER_ID ")
   private Long id;
+  @Column(length = 10)
+  private String username;
+  private int age;
   @OneToMany(mappedBy = "member")
   private List<Order> orders = new ArrayList<Order>();
-  @Column(length = 10)
-  private String name;
-  @Embedded
-  private Address address;
+  @ManyToOne(fetch = LAZY)
+  @JoinColumn(name = "TEAM_ID")
+  private Team team;
 
   public Long getId() {
     return id;
   }
 
-  public String getName() {
-    return name;
-  }
-
   public void setId(Long id) {
     this.id = id;
+  }
+
+  public String getUsername() {
+    return username;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  public int getAge() {
+    return age;
+  }
+
+  public void setAge(int age) {
+    this.age = age;
   }
 
   public List<Order> getOrders() {
@@ -43,19 +61,16 @@ public class Member extends BaseEntity{
     this.orders = orders;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public Team getTeam() {
+    return team;
   }
 
-  public Address getAddress() {
-    return address;
+  public void setTeam(Team team) {
+    this.team = team;
   }
 
-  public void setAddress(Address address) {
-    this.address = address;
-  }
-
-  public static void main(String[] args) {
-    System.out.println("Hello world!");
+  public void addTeam(Team team) {
+    this.team = team;
+    team.getMember().add(this);
   }
 }

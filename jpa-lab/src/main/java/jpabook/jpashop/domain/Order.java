@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -22,21 +23,18 @@ import net.bytebuddy.dynamic.TypeResolutionStrategy.Lazy;
 
 @Entity
 @Table(name = "Orders")
-public class Order extends BaseEntity{
+public class Order{
   @Id @GeneratedValue
-  @Column(name = "ORDER_ID")
   private Long id;
-  @OneToOne(fetch = LAZY, cascade = CascadeType.ALL)
-  @JoinColumn(name = "DELIVERY_ID")
-  private Delivery delivery;
-  @OneToMany(mappedBy = "order", cascade = CascadeType.ALL )
-  private List<OrderItem> orderItems = new ArrayList<OrderItem>();
+  @ManyToOne(cascade = CascadeType.ALL, fetch = LAZY)
+  @JoinColumn(name = "PRODUCT_ID")
+  private Product product;
   @ManyToOne(fetch = LAZY)
-  @JoinColumn(name = "MEMBER_ID")
+  @JoinColumn(name = "ORDER_ID")
   private Member member;
-  private LocalDateTime orderDate;
-  @Enumerated(EnumType.STRING)
-  private OrderStatus status;
+  private int orderAmount;
+  @Embedded
+  private Address address;
 
   public Long getId() {
     return id;
@@ -44,6 +42,14 @@ public class Order extends BaseEntity{
 
   public void setId(Long id) {
     this.id = id;
+  }
+
+  public Product getProduct() {
+    return product;
+  }
+
+  public void setProduct(Product product) {
+    this.product = product;
   }
 
   public Member getMember() {
@@ -54,19 +60,17 @@ public class Order extends BaseEntity{
     this.member = member;
   }
 
-  public LocalDateTime getOrderDate() {
-    return orderDate;
+  public int getOrderAmount() {
+    return orderAmount;
   }
 
-  public void setOrderDate(LocalDateTime orderDate) {
-    this.orderDate = orderDate;
+  public void setOrderAmount(int orderAmount) {
+    this.orderAmount = orderAmount;
   }
 
-  public OrderStatus getStatus() {
-    return status;
+  public void addOrder(Member member) {
+    this.member = member;
+    member.getOrders().add(this);
   }
 
-  public void setStatus(OrderStatus status) {
-    this.status = status;
-  }
 }

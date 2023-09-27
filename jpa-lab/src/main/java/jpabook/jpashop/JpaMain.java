@@ -75,7 +75,7 @@ public class JpaMain {
       //new 명령어로 조회
       List<MemberDTO> result3 = em.createQuery("SELECT new jpabook.jpashop.domain.MemberDTO(m.username, m.age) FROM Member m", MemberDTO.class)
           .getResultList();
-      MemberDTO memberDTO = result3.get(0)
+      MemberDTO memberDTO = result3.get(0);
       System.out.println("username: " + memberDTO.getUsername());
       System.out.println("age: " + memberDTO.getAge());
 

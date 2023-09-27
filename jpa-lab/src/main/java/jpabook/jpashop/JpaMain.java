@@ -7,7 +7,6 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import jpabook.jpashop.domain.Member;
-import jpabook.jpashop.domain.MemberDTA;
 import jpabook.jpashop.domain.MemberDTO;
 import jpabook.jpashop.domain.Team;
 
@@ -78,6 +77,22 @@ public class JpaMain {
       MemberDTO memberDTO = result3.get(0);
       System.out.println("username: " + memberDTO.getUsername());
       System.out.println("age: " + memberDTO.getAge());
+
+      /** 페이징 API **/
+      for (int i=0; i<10; i++) {
+        Member m = new Member();
+        m.setUsername("Member" + i);
+        m.setAge(i);
+        em.persist(m);
+      }
+      List<Member> pagingRes = em.createQuery("select m from Member m order by m.age desc ", Member.class)
+              .setFirstResult(1)
+              .setMaxResults(5)
+              .getResultList();
+      for (Member m:pagingRes) {
+        System.out.println("paging member: " + m.getUsername());
+      }
+
 
 
       tx.commit();

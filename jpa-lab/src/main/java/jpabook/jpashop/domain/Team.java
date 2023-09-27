@@ -15,8 +15,29 @@ public class Team {
   private Long id;
   @Column(length = 25)
   private String name;
-  @OneToMany(mappedBy = "team", cascade = CascadeType.PERSIST, orphanRemoval = true)
+  @OneToMany(mappedBy = "team",
+      cascade = CascadeType.ALL, orphanRemoval = true)
   private List<Member> members = new ArrayList<>();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   public Long getId() {
     return id;

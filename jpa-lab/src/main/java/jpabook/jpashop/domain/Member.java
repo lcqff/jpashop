@@ -24,10 +24,23 @@ public class Member{
   private String username;
   private int age;
   @OneToMany(mappedBy = "member")
-  private List<Order> orders = new ArrayList<Order>();
+  private List<Order> orders = new ArrayList<>();
   @ManyToOne(fetch = LAZY)
   @JoinColumn(name = "TEAM_ID")
   private Team team;
+
+
+  public void changeTeam (Team team) {
+    this.team = team;
+    team.getMember().add(this);
+  }
+
+
+
+
+
+
+
 
   public Long getId() {
     return id;
@@ -69,8 +82,5 @@ public class Member{
     this.team = team;
   }
 
-  public void addTeam(Team team) {
-    this.team = team;
-    team.getMember().add(this);
-  }
+
 }

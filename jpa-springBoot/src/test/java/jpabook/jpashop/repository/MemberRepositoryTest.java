@@ -2,7 +2,7 @@ package jpabook.jpashop.repository;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import jpabook.jpashop.model.Member;
+import jpabook.jpashop.domain.Member;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

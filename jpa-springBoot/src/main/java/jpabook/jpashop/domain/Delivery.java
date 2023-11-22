@@ -8,9 +8,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
-import jpabook.jpashop.domain.utils.DiliveryStatus;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,14 +18,14 @@ public class Delivery {
     @Id
     @GeneratedValue
     @Column(name = "delivery_id")
-    private Long id;
+    private long id;
 
-    @OneToOne(mappedBy = "delivery", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "delivery",fetch = FetchType.LAZY)
     private Order order;
+
+    @Enumerated(EnumType.STRING)
+    private DeliveryStatus deliveryStatus;
 
     @Embedded
     private Address address;
-
-    @Enumerated(EnumType.STRING)
-    private DiliveryStatus status;
 }

@@ -82,6 +82,7 @@ public class Order {
             throw new IllegalStateException("이미 배송된 상품은 취소가 불가능합니다.");
         }
         orderItems.forEach((OrderItem::cancel));
+        setStatus(OrderStatus.CANCEL);
     }
 
     //==조회로직==//

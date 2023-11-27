@@ -9,9 +9,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class JpashopApplication {
 
 	public static void main(String[] args) {
-		//SpringApplication.run(JpashopApplication.class, args);
+		SpringApplication.run(JpashopApplication.class, args);
 
-		System.out.printf(PRINT_INCOME_RATE_MESSAGE.getMessage().formatted(99.8));
+		//System.out.printf(PRINT_INCOME_RATE_MESSAGE.getMessage(),99.8);
 	}
 
 }

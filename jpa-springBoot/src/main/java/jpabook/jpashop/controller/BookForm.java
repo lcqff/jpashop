@@ -15,6 +15,8 @@ public class BookForm {
     private String author;
     private String isbn;
 
+    public BookForm() {
+    }
 
     public BookForm(Long id, String name, int price, int stockQuantity, String author, String isbn) {
     }

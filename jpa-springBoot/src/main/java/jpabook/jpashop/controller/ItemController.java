@@ -27,7 +27,6 @@ public class ItemController {
     @PostMapping(value = "/items/new")
     public String create(BookForm form) {
         Book book = new Book();
-        book.setId(form.getId());
         book.setName(form.getName());
         book.setPrice(form.getPrice());
         book.setStockQuantity(form.getStockQuantity());

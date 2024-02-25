@@ -18,9 +18,9 @@ public class BaseballView {
     }
 
     public static String chooseRestartGame() {
-        String inputNum = Console.readLine();
+        String inputNum =
         checkRestartNumValid(inputNum);
-        return inputNum;
+        return inputNum;Console.readLine();
     }
 
     private static void checkRestartNumValid(String inputNum) {

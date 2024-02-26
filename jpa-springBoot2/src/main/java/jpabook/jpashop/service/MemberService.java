@@ -4,7 +4,6 @@ import java.util.List;
 import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -41,10 +40,14 @@ public class MemberService {
     }
 
     @Transactional
-    public Member update(Long id, String name) {
+    public void update(Long id, String name) {
         Member member = memberRepository.find(id);
         member.setName(name);
         memberRepository.save(member);
+    }
+
+    public Member getMember(Long id) {
+        Member member = memberRepository.find(id);
         return member;
     }
 }

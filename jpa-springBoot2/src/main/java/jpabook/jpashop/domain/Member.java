@@ -31,9 +31,9 @@ public class Member {
     private List<Order> orders = new ArrayList<>();
 
     @Builder
-    private Member(String name, Address address, List<Order> orders) {
+    private Member(String name, Address address) {
         this.name = name;
         this.address = address;
-        this.orders = orders;
+        this.orders = List.of();
     }
 }

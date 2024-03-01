@@ -49,7 +49,9 @@ public class Order {
 
     public void setMember(Member member) {
         this.member = member;
-        member.getOrders().add(this);
+        List<Order> orders = new ArrayList<>(member.getOrders());
+        orders.add(this);
+        member.setOrders(orders);
     }
 
     public void setDelivery(Delivery delivery) {

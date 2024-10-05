@@ -22,4 +22,4 @@ Yeonhu의 Spring boot 및 Java 실험실
 - configurations
   - Spring을 사용할때 필요할수도 있는 config 파일들을 모아둔 폴더
   - `swagger`: api 명세 문서화 도구 Swagger
-
+  - `cors`: 외부 도메인에 대한 CORS 허용 설정

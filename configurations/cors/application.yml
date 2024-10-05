@@ -1,0 +1,4 @@
+cors:
+  allow:
+    origins: http://localhost:3000 # 도메인 주소, 프론트 로컬 주소
+    methods: GET, POST, PUT, DELETE, PATCH

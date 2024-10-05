@@ -1,0 +1,13 @@
+# swagger
+springdoc:
+  packages-to-scan: # 소스코드 상위 패키지 명
+  default-consumes-media-type: application/json;charset=UTF-8
+  default-produces-media-type: application/json;charset=UTF-8
+  swagger-ui:
+    path: swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /api-docs # 해당 엔드포인트로 api 호출 (defaults: v3/api-docs)
+  cache:
+    disabled: true

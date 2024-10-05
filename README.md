@@ -15,3 +15,11 @@ Yeonhu의 Spring boot 및 Java 실험실
 
 - wooteco-precourse
   - 우아한 테크 코스 6기 프리코스 과제
+
+- design-pattern
+  - ['개발자가 반드시 정복해야 할 객체지향과 디자인 패턴(최범규)'](https://www.aladin.co.kr/m/mproduct.aspx?itemid=28301535&start=pgooglemc)를 읽고 정리한 폴더
+
+- configurations
+  - Spring을 사용할때 필요할수도 있는 config 파일들을 모아둔 폴더
+  - `swagger`: api 명세 문서화 도구 Swagger
+

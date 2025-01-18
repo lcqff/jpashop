@@ -18,7 +18,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-@EnableWebSecurity
+@EnableWebSecurity(debug = true) // (debug = true) Security 필터체인 및 로그 확인
 @EnableMethodSecurity
 @RequiredArgsConstructor
 public class Oauth2ClientConfig {
@@ -28,6 +28,8 @@ public class Oauth2ClientConfig {
     private final LoginSuccessHandler loginSuccessHandler;
     private final OauthAccessDeniedHandler oauthAccessDeniedHandler;
     private final OauthAuthenticationEntryPoint oauthAuthenticationEntryPoint;
+    private final JwtAuthorizationFilter jwtAuthorizationFilter;
+
     @Value(value = "${server.error-page}")
     private String errorPage;
 
@@ -40,11 +42,15 @@ public class Oauth2ClientConfig {
         http.csrf(AbstractHttpConfigurer::disable);
         http.cors(cors -> cors.configurationSource(corsConfig.corsConfigurationSource())); // CORS 설정 활성화
 
+        http.sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(STATELESS));
+
         http.oauth2Login(oauth2 -> oauth2
                 .userInfoEndpoint(userInfoEndpointConfig -> userInfoEndpointConfig.userService(oAuth2UserService))
                 .successHandler(loginSuccessHandler)
                 .failureUrl(errorPage)
         );
+
+        http.addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);
 
         http.exceptionHandling(exception -> exception
                 .accessDeniedHandler(oauthAccessDeniedHandler)

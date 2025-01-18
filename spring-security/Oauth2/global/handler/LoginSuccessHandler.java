@@ -22,16 +22,19 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RequiredArgsConstructor
 public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
     private final CookieService cookieService;
-    
     @Value(value = "${server.front}")
     private String domain;
-
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws IOException {
 
         OAuth2ProviderUser user = (OAuth2ProviderUser) authentication.getPrincipal();
+
+        String uuid = user.getUuid();
+        List<? extends GrantedAuthority> role = user.getAuthorities();
+
+        cookieService.authenticate(uuid, role, response);
 
         String url = UriComponentsBuilder.fromUriString(domain)
                 .path("")
